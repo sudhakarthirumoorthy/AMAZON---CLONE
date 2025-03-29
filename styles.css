@@ -1,0 +1,87 @@
+   @import url('https://fonts.cdnfonts.com/css/ember');
+                
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Amazon Ember",sans-serif;
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+}
+a{
+    cursor: pointer;
+}
+
+nav{
+    background-color: #1a242f;
+    padding: 0px 25px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+}
+
+.logo-img{
+    width: 150px;
+    height: 70px;
+    object-fit: cover;
+}
+    
+.right-menu{
+    padding: 25px;
+    font-size: 22px;
+}
+
+.right-menu a{
+    padding: 5px 15px;
+    color: rgba(242,244,246,0.9);
+}
+
+.right-menu label:hover{
+    cursor: pointer;
+}
+
+.right-menu a:ntn-child(2),
+.right-menu > a > label {
+    font-size: 18px;
+    padding: 0px 3px;
+}
+
+.arrow-down{
+    font-size: 12px;
+}
+
+header{
+    position: relative;
+    min-width: 320px;
+    height: 650px;
+    overflow: hidden;
+    color: #fff;
+}
+
+header > img {
+    width: 100%;
+    object-fit: cover;
+}
+
+text-over-image{
+    background-color: rgba(0,0,0,0);
+    box-shadow: inset 545px 0px 60px 0px #000;
+    width: 45px;
+    height: 100%;
+    position: absolute;
+    top: 45%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+}
+
+.text-over-image > h1{
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 50px;
+    margin-top: 100px;
+    padding: 20px 0px;
+} 
