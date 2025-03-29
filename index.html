@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Prime Video</title>
     <link rel="shortcut icon" href="img/navicon.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,66 +15,66 @@
         <img src="img/prime.jpg" class="logo-img" alt="prime logo">
      </div>
      <div class="right-menu">
-        <a href="">
+        <a href="" class="language-selector">
             <i class="fas fa-globe"></i>
             <label for="lang">EN</label>
-            <i class=" fas fa-caret-down arrow-down lang-btn"></i>
+            <i class="fas fa-caret-down arrow-down lang-btn"></i>
         </a>
-        <a href>Sign In</a>
+        <a href="" class="sign-in">Sign In</a>
      </div>
     </nav>
     <!-- navigation end -->
      <!-- main content start -->
-    <header>
+    <header class="hero-section">
         <img src="img/home1.jpg" alt="poster">
         <div class="text-over-image">
             <h1>Welcome to prime video</h1>
-            <p>Join Prime to watch the latest movies, TV shows and award-winning Amazon Originals
-                Sign in to join Prime</p>
-                <button type="submit">Start your 30-day free trial</button>
-                <p>With select credit,debit card,,or UPI ID</p>
+            <p>Join Prime to watch the latest movies, TV shows and award-winning Amazon Originals</p>
+            <p>Sign in to join Prime</p>
+            <button type="submit">Start your 30-day free trial</button>
+            <p class="small-text">With select credit, debit card, or UPI ID</p>
         </div>
     </header>
-    <header>
+    <header class="hero-section">
         <img src="img/home2.jpeg" alt="poster">
         <div class="text-over-image">
             <h1>Movie rentals on prime video</h1>
-            <p>Early Access to new movies,before digital subscription</p>
-                <button type="submit">Rent Now</button>
+            <p>Early Access to new movies, before digital subscription</p>
+            <button type="submit">Rent Now</button>
         </div>
     </header>
-    <section>
-        <div class="section">
-            <h1>Your favourite channel all in one place</h1>
-            <p>With Prime Video channels find shows and movies your favourite 
-                channels all in one place.Enjoy with add-on subscription to Channels of your choice
+    <section class="channels-section">
+        <div class="section-text">
+            <h1>Your favourite channels all in one place</h1>
+            <p>With Prime Video channels find shows and movies from your favourite 
+                channels all in one place. Enjoy with add-on subscription to Channels of your choice
             </p>
         </div>
         <div class="channel-btn">
-
+            <!-- Channel images will be added by JavaScript -->
         </div>
     </section>
-    <header class="fire-tv-header">
-        <img src="" alt="poster">
-        <div class="fire-over-image" id="fire-div">
+    <header class="fire-tv-header hero-section">
+        <img src="img/remote.jpg" alt="poster">
+        <div class="text-over-image" id="fire-div">
             <h1 class="fire-head">Even better with fire TV stick</h1>
             <p class="fire-para">
-                The biggest movies and TV shows are always better on a big screen SImply plug in
-                your Amazon Fire TV stick and stream on ant HDTV.press the voice button on the remote and say 
+                The biggest movies and TV shows are always better on a big screen. Simply plug in
+                your Amazon Fire TV stick and stream on any HDTV. Press the voice button on the remote and say 
                 the name of the title you want to watch to find it in seconds.
             </p>
             <button type="submit">Get Started</button>
         </div>
     </header>
 
-    <header class="membership-header">
+    <header class="membership-header hero-section">
         <img src="img/bheempig.jpg" alt="poster">
         <div class="text-over-image" id="membership-div">
             <h1 class="membership-head">Family Friendly</h1>
             <p class="membership-para">
-                With easy to use parental controls and a dedicated kids page,enjoy secure,ad-free 
-                kids entertainment.Kids can enjoy popular TV shows like peppa pig
-                powerpuff girls,Chota Bheem.
+                With easy to use parental controls and a dedicated kids page, enjoy secure, ad-free 
+                kids entertainment. Kids can enjoy popular TV shows like Peppa Pig,
+                Powerpuff Girls, Chota Bheem.
             </p>
             <button type="submit">Get Started</button>
         </div>
@@ -82,8 +83,8 @@
      
       <!-- footer content -->
        <footer>
-        <div class="logo">
-           <div>
+        <div class="footer-content">
+           <div class="footer-logo">
             <img src="img/footerlogo.jpg" alt="footer logo" id="footer-logo">
            </div>
            <div id="copyright">
@@ -98,3 +99,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
