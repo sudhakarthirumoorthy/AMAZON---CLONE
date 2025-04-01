@@ -1,0 +1,104 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f3f3f3;
+}
+
+/* Amazon Logo */
+.logo img {
+    margin: 20px auto;
+    width: 150px;
+    display: block;
+}
+
+/* Error Box */
+.errorBox {
+    display: none;
+    color: red;
+    background: #ffecec;
+    border: 1px solid red;
+    padding: 10px;
+    width: 300px;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+/* Sign In Box */
+.signInBox {
+    background: white;
+    width: 300px;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: yellow;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+.inputField {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.inputField label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputField input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Checkbox */
+.checkbox-container {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Sign In Button */
+#signInBtn {
+    width: 100%;
+    background: #f0c14b;
+    border: 1px solid #a88734;
+    color: black;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#signInBtn:hover {
+    background: #e6af3a;
+}
+
+/* Sign Up Link */
+.signup-link {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.signup-link a {
+    color: #0073e6;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+footer a {
+    color: #0073e6;
+}
