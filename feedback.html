@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeView - Send Feedback</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Amazon Ember', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0F1111;
+            padding: 15px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .feedback-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .feedback-header p {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        .feedback-form {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .rating-label {
+            margin-right: 15px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .rating-stars {
+            display: flex;
+            direction: rtl; /* Right to left for star hover effect */
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            color: #666;
+            font-size: 30px;
+            padding: 0 5px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label,
+        .rating-stars input:checked ~ label {
+            color: #ffd700;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #cccccc;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .submit-btn {
+            background-color: #00a8e1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #0088b9;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: #222;
+            border-radius: 8px;
+        }
+
+        .success-message h2 {
+            color: #00a8e1;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .success-message .btn {
+            background-color: #00a8e1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .success-message .btn:hover {
+            background-color: #0088b9;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0F1111;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: #a6a6a6;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #a6a6a6;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .feedback-form {
+                padding: 20px;
+            }
+
+            .rating-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .rating-label {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+
+            .footer-links a {
+                margin: 0 10px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feedback-header h1 {
+                font-size: 24px;
+            }
+
+            .feedback-header p {
+                font-size: 14px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .rating-stars label {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/footerlogo.jpg" alt="PrimeView Logo">
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="feedback-header">
+            <h1>Send Us Feedback</h1>
+            <p>We'd love to hear your thoughts about PrimeView. Your feedback helps us improve our service.</p>
+        </div>
+
+        <form id="feedbackForm" class="feedback-form">
+            <div class="form-group">
+                <label for="name">Your Name (Optional)</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address (Optional)</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="feedback-type">Type of Feedback</label>
+                <select id="feedback-type" name="feedback-type" required>
+                    <option value="" disabled selected>Select feedback type</option>
+                    <option value="bug">Bug Report</option>
+                    <option value="suggestion">Feature Suggestion</option>
+                    <option value="content">Content Request</option>
+                    <option value="performance">Performance Issue</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div class="rating-container">
+                    <span class="rating-label">Your Rating:</span>
+                    <div class="rating-stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Briefly describe your feedback" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Detailed Feedback</label>
+                <textarea id="message" name="message" placeholder="Please provide as much detail as possible" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="contact-me" value="yes"> I'd like to be contacted about this feedback
+                    </label>
+                    <label>
+                        <input type="checkbox" name="terms" value="agree" required> I agree to the Terms of Service and Privacy Policy
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            <h2>Thank You for Your Feedback!</h2>
+            <p>We appreciate you taking the time to share your thoughts with us. Your feedback helps us improve PrimeView for everyone.</p>
+            <a href="#" class="btn" id="backToHome">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="help.html">Help</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Notice</a>
+            <a href="#">Cookies</a>
+            <a href="#">Corporate Information</a>
+        </div>
+        <div class="copyright">
+            © 2023 PrimeView Clone. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            const successMessage = document.getElementById('successMessage');
+            const backToHome = document.getElementById('backToHome');
+
+            // Form submission
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally send the data to a server
+                // For this demo, we'll just show the success message
+                feedbackForm.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Back to home button
+            backToHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                // In a real app, this would redirect to the home page
+                alert('In a real app, this would redirect to the home page');
+            });
+
+            // Star rating hover effect
+            const stars = document.querySelectorAll('.rating-stars label');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const value = this.getAttribute('for').replace('star', '');
+                    highlightStars(value);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    const checked = document.querySelector('.rating-stars input:checked');
+                    if (checked) {
+                        highlightStars(checked.value);
+                    } else {
+                        resetStars();
+                    }
+                });
+            });
+
+            function highlightStars(value) {
+                const stars = document.querySelectorAll('.rating-stars label');
+                stars.forEach(star => {
+                    const starValue = star.getAttribute('for').replace('star', '');
+                    if (starValue <= value) {
+                        star.style.color = '#ffd700';
+                    } else {
+                        star.style.color = '#666';
+                    }
+                });
+            }
+
+            function resetStars() {
+                const stars = document.querySelectorAll('.rating-stars label');
+                stars.forEach(star => {
+                    star.style.color = '#666';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
