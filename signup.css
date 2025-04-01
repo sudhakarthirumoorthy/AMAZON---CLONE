@@ -1,0 +1,238 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Amazon Ember", Sans-Serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: #fff;
+    color: #111;
+    line-height: 1.5;
+}
+
+/* Container and Logo */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+#container img {
+    margin: 15px 0;
+    cursor: pointer;
+    max-width: 180px;
+    height: auto;
+}
+
+/* Error Box */
+.errorBox {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    display: none;
+}
+
+.error {
+    border: 1px solid #C40;
+    border-radius: 4px;
+    padding: 14px;
+    display: flex;
+    background-color: #fcf4f4;
+}
+
+.error span {
+    margin-left: 15px;
+}
+
+.error h4 {
+    color: #C40;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+}
+
+.errorList {
+    list-style-type: none;
+    padding-top: 5px;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.nameErr, 
+.emailErr, 
+.passErr, 
+.passShortErr, 
+.repassErr {
+    display: none;
+    margin: 5px 0;
+}
+
+/* Signup Box */
+.signUpBox {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.signUpBox > h1 {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+}
+
+/* Form Elements */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.inputText {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.date {
+    width: 100%;
+    height: 31px;
+    padding: 3px 7px;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgb(255, 255, 255 / 50%), 
+                0 1px 0 rgb(0, 0, 0 / 7%) inset;
+    font-size: 14px;
+}
+
+.date:focus {
+    outline: none;
+    border: 1px solid #e98216;
+    box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
+}
+
+.warn {
+    font-size: 12px;
+    font-weight: 400;
+    color: #555;
+    margin-top: 5px;
+}
+
+.warn > span > i {
+    color: #2e8b8b;
+    font-size: 16px;
+}
+
+/* Button */
+.btn {
+    margin: 20px 0;
+}
+
+.CreateAccBtn {
+    width: 100%;
+    height: 41px;
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border: 1px solid #a88734;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 10px;
+    text-align: center;
+    transition: all 0.1s ease;
+}
+
+.CreateAccBtn:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+}
+
+/* Terms and Sign In */
+.terms {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.keepSignIn {
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+a {
+    color: #0066cc;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #c45500;
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.terms-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.terms-links p {
+    font-size: 12px;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #555;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .signUpBox {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .signUpBox > h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #container img {
+        max-width: 140px;
+    }
+    
+    .signUpBox > h1 {
+        font-size: 22px;
+    }
+    
+    .terms-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .CreateAccBtn {
+        height: 38px;
+        font-size: 13px;
+    }
+}

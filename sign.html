@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Registration</title>
+    <link rel="shortcut icon" href="amazon_logo.jpg" type="image/png">
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://kit.fontawesome.com/7edaac5171.js" crossorigin="anonymous"></script>
+</head>
+<body> 
+    <!-- Logo -->
+    <div id="container">
+        <img src="img/videoacc.jpg" alt="Amazon Logo">
+    </div>
+
+    <!-- Warning -->
+    <header class="errorBox">
+        <div class="error">
+            <p>
+                <i class="fas fa-exclamation-triangle" style="font-size: 25px; color: red;"></i>
+            </p>
+            <span>
+                <h4>There was a problem</h4>
+                <ul class="errorList">
+                    <li class="nameErr"><i class="fa fa-circle" style="font-size: 5px; color:black"></i> <span class="list">Enter Your Name</span></li>
+                    <li class="emailErr"><i class="fa fa-circle" style="font-size: 5px; color:black"></i> <span class="list">Enter Your Email</span></li>
+                    <li class="passErr"><i class="fa fa-circle" style="font-size: 5px; color:black"></i> <span class="list">Enter Your Password</span></li>
+                    <li class="passShortErr"><i class="fa fa-circle" style="font-size: 5px; color:black"></i> <span class="list">Password is too short</span></li>
+                    <li class="repassErr"><i class="fa fa-circle" style="font-size: 5px; color:black"></i> <span class="list">Passwords must match</span></li>
+                </ul>
+            </span>
+        </div>
+    </header>
+
+    <!-- Signup Form -->
+    <main>
+        <div class="signUpBox">
+            <h1>Create Account</h1>
+
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="name" class="inputText">Your Name</label>
+                    <input type="text" name="name" id="name" class="date">
+                </div>
+
+                <div class="input-group">
+                    <label for="email" class="inputText">Email or phone number</label>
+                    <input type="text" name="email" id="email" class="date">
+                </div>
+
+                <div class="input-group">
+                    <label for="password" class="inputText">Password</label>
+                    <input type="password" name="password" id="password" class="date" placeholder="At least 6 characters">
+                    <p class="warn"><span><i>i</i></span> Password must be at least 6 characters</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="reEnterPass" class="inputText">Confirm password</label>
+                    <input type="password" name="reEnterPass" id="reEnterPass" class="date">
+                </div>
+
+                <div class="btn">
+                    
+                    <button type="button" class="CreateAccBtn" >Create your Amazon Account</button>
+                    
+                </div>
+            </form>
+
+            <div class="terms">
+                <p>By creating an account, you agree to Amazon's <a href="#">Conditions of Use and Privacy Notice</a></p>
+            </div>
+
+            <div class="keepSignIn">
+                <p>Already have an account? <a href="accout.html">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="terms-links">
+                <p><a href="#">Terms and Privacy Notice</a></p>
+                <p><a href="#">Send us feedback</a></p>
+                <p><a href="#">Help</a></p>
+            </div>
+            <div class="copyright">
+                <p class="copy">© 1996-2025, Amazon.com, Inc. or its affiliates</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="up.js"></script>
+</body>
+</html>
