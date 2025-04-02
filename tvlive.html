@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Video - Live TV</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #0f171e;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a242f;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: #00a8e1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00a8e1;
+        }
+
+        nav ul li a.active {
+            color: #00a8e1;
+            font-weight: bold;
+        }
+
+        /* Main Content Styles */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Filter Styles */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .filter-btn {
+            background-color: #252e39;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: #394b61;
+        }
+
+        .filter-btn.active {
+            background-color: #00a8e1;
+        }
+
+        /* Channel Grid Styles */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .channel-card {
+            background-color: #1a242f;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .channel-thumbnail {
+            position: relative;
+            height: 170px;
+            overflow: hidden;
+        }
+
+        .channel-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .channel-info {
+            padding: 15px;
+        }
+
+        .channel-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .channel-program {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .channel-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .watch-btn {
+            display: block;
+            background-color: #00a8e1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .watch-btn:hover {
+            background-color: #0089b8;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            width: 80%;
+            max-width: 900px;
+            background-color: #1a242f;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .video-placeholder h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .video-placeholder p {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #1a242f;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s;
+            }
+
+            nav.active {
+                height: auto;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .channels-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .channels-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .channel-thumbnail {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">prime<span>video</span></div>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#" class="active">Live TV</a></li>
+                    <li><a href="#">My Stuff</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title"><span></span>Live TV</h1>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-category="all">All Channels</button>
+            <button class="filter-btn" data-category="sports">Sports</button>
+            <button class="filter-btn" data-category="news">News</button>
+            <button class="filter-btn" data-category="entertainment">Entertainment</button>
+            <button class="filter-btn" data-category="kids">Kids</button>
+            <button class="filter-btn" data-category="premium">Premium</button>
+        </div>
+
+        <div class="channels-grid" id="channelsGrid">
+            <!-- Channels will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <div class="modal" id="watchModal">
+        <span class="close-modal" id="closeModal">×</span>
+        <div class="modal-content">
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <h3 id="modalChannelName"></h3>
+                    <p id="modalProgramName"></p>
+                    <p style="margin-top: 20px;">This is a demo. Live streaming would appear here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample channel data
+        const channels = [
+            {
+                id: 1,
+                name: "Sports Network",
+                program: "Premier League: Liverpool vs. Manchester City",
+                time: "Live Now",
+                category: "sports",
+                viewers: "245K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Sports+Network"
+            },
+            {
+                id: 2,
+                name: "News 24",
+                program: "Breaking News: Global Updates",
+                time: "Live Now",
+                category: "news",
+                viewers: "189K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=News+24"
+            },
+            {
+                id: 3,
+                name: "Entertainment Plus",
+                program: "Celebrity Talk Show",
+                time: "Live Now",
+                category: "entertainment",
+                viewers: "156K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Entertainment+Plus"
+            },
+            {
+                id: 4,
+                name: "Kids Zone",
+                program: "Animated Adventures",
+                time: "Live Now",
+                category: "kids",
+                viewers: "78K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Kids+Zone"
+            },
+            {
+                id: 5,
+                name: "Movie Central",
+                program: "Behind the Scenes: Upcoming Blockbusters",
+                time: "Live Now",
+                category: "entertainment",
+                viewers: "112K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Movie+Central"
+            },
+            {
+                id: 6,
+                name: "Sports Extra",
+                program: "NBA Playoffs: Lakers vs. Celtics",
+                time: "Live Now",
+                category: "sports",
+                viewers: "320K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Sports+Extra"
+            },
+            {
+                id: 7,
+                name: "Premium Movies",
+                program: "Exclusive: Director's Cut",
+                time: "Live Now",
+                category: "premium",
+                viewers: "95K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Premium+Movies"
+            },
+            {
+                id: 8,
+                name: "Global News",
+                program: "World Report",
+                time: "Live Now",
+                category: "news",
+                viewers: "210K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Global+News"
+            },
+            {
+                id: 9,
+                name: "Cartoon Network",
+                program: "Animated Classics Marathon",
+                time: "Live Now",
+                category: "kids",
+                viewers: "145K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Cartoon+Network"
+            },
+            {
+                id: 10,
+                name: "Premium Sports",
+                program: "Formula 1: Monaco Grand Prix",
+                time: "Live Now",
+                category: "premium",
+                viewers: "278K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Premium+Sports"
+            },
+            {
+                id: 11,
+                name: "Comedy Central",
+                program: "Stand-up Comedy Special",
+                time: "Live Now",
+                category: "entertainment",
+                viewers: "167K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Comedy+Central"
+            },
+            {
+                id: 12,
+                name: "Weather Channel",
+                program: "Storm Watch: Live Updates",
+                time: "Live Now",
+                category: "news",
+                viewers: "89K watching",
+                image: "https://placeholder.svg?height=170&width=300&text=Weather+Channel"
+            }
+        ];
+
+        // DOM Elements
+        const channelsGrid = document.getElementById('channelsGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        const watchModal = document.getElementById('watchModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalChannelName = document.getElementById('modalChannelName');
+        const modalProgramName = document.getElementById('modalProgramName');
+
+        // Render channels function
+        function renderChannels(category = 'all') {
+            channelsGrid.innerHTML = '';
+            
+            const filteredChannels = category === 'all' 
+                ? channels 
+                : channels.filter(channel => channel.category === category);
+            
+            filteredChannels.forEach(channel => {
+                const channelCard = document.createElement('div');
+                channelCard.className = 'channel-card';
+                channelCard.dataset.id = channel.id;
+                
+                channelCard.innerHTML = `
+                    <div class="channel-thumbnail">
+                        <img src="${channel.image}" alt="${channel.name}">
+                        <div class="live-badge">LIVE</div>
+                    </div>
+                    <div class="channel-info">
+                        <h3 class="channel-name">${channel.name}</h3>
+                        <p class="channel-program">${channel.program}</p>
+                        <div class="channel-meta">
+                            <span>${channel.time}</span>
+                            <span>${channel.viewers}</span>
+                        </div>
+                        <a href="#" class="watch-btn">Watch Now</a>
+                    </div>
+                `;
+                
+                channelsGrid.appendChild(channelCard);
+                
+                // Add event listener to the watch button
+                const watchBtn = channelCard.querySelector('.watch-btn');
+                watchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(channel);
+                });
+            });
+        }
+
+        // Filter channels
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get category and render channels
+                const category = button.dataset.category;
+                renderChannels(category);
+            });
+        });
+
+        // Toggle navigation menu
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Modal functions
+        function openModal(channel) {
+            modalChannelName.textContent = channel.name;
+            modalProgramName.textContent = channel.program;
+            watchModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        closeModal.addEventListener('click', () => {
+            watchModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        });
+
+        // Close modal when clicking outside of content
+        watchModal.addEventListener('click', (e) => {
+            if (e.target === watchModal) {
+                watchModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChannels('all');
+        });
+    </script>
+</body>
+</html>

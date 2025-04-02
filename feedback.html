@@ -369,7 +369,7 @@
         <div id="successMessage" class="success-message">
             <h2>Thank You for Your Feedback!</h2>
             <p>We appreciate you taking the time to share your thoughts with us. Your feedback helps us improve PrimeView for everyone.</p>
-            <a href="#" class="btn" id="backToHome">Back to Home</a>
+            <a href="index.html" class="btn" id="backToHome">Back to Home</a>
         </div>
     </div>
 
@@ -377,7 +377,7 @@
         <div class="footer-links">
             <a href="help.html">Help</a>
             <a href="#">Terms of Use</a>
-            <a href="#">Privacy Notice</a>
+            <a href="termsprivacy.html">Privacy Notice</a>
             <a href="#">Cookies</a>
             <a href="#">Corporate Information</a>
         </div>
@@ -405,13 +405,7 @@
                 successMessage.scrollIntoView({ behavior: 'smooth' });
             });
 
-            // Back to home button
-            backToHome.addEventListener('click', function(e) {
-                e.preventDefault();
-                // In a real app, this would redirect to the home page
-                alert('In a real app, this would redirect to the home page');
-            });
-
+            
             // Star rating hover effect
             const stars = document.querySelectorAll('.rating-stars label');
             stars.forEach(star => {
