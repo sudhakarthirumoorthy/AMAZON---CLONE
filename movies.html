@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Video Movies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Amazon Ember', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0F171E;
+            color: #FFFFFF;
+        }
+
+        header {
+            background-color: #0F171E;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1A242F;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            background-color: #1A242F;
+            border: none;
+            padding: 8px 15px;
+            color: #FFFFFF;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .search-container button {
+            background-color: #00A8E1;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(to right, rgba(15, 23, 30, 0.9), rgba(15, 23, 30, 0.7)), 
+                        url('https://m.media-amazon.com/images/G/01/digital/video/sonata/Superhero_UK_Acquisition_FT/9c0d3a3e-9a2c-4a7b-b8e3-7a3c5f5a5b5a._UR3000,600_SX1500_FMwebp_.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero button {
+            background-color: #00A8E1;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            padding: 20px 50px;
+            font-size: 1.5rem;
+        }
+
+        .movies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 50px 50px;
+        }
+
+        .movie-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .movie-card:hover .movie-info {
+            opacity: 1;
+        }
+
+        .movie-info h3 {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .movie-info p {
+            font-size: 12px;
+            color: #AAAAAA;
+        }
+
+        .prime-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #00A8E1;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #1A242F;
+            padding: 30px 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #AAAAAA;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            color: #AAAAAA;
+            font-size: 12px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .movies-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                padding: 0 20px 30px;
+            }
+
+            .section-title {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 250px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .search-container input {
+                width: 150px;
+            }
+
+            .movies-container {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/prime.jpg" alt="Prime Video Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tvshows.html">TV Shows</a></li>
+                <li><a href="movies.html">Movies</a></li>
+               
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search movies...">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Prime Video</h1>
+            <p>Watch the latest movies, exclusive originals, and award-winning Amazon Originals. Enjoy unlimited streaming with your Prime membership.</p>
+            <button>Start Your Free Trial</button>
+        </div>
+    </section>
+
+    <h2 class="section-title">Popular Movies</h2>
+    <div class="movies-container" id="moviesContainer">
+        <!-- Movies will be loaded here by JavaScript -->
+    </div>
+
+    <h2 class="section-title">Prime Originals</h2>
+    <div class="movies-container" id="originalsContainer">
+        <!-- Originals will be loaded here by JavaScript -->
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="termsprivacy.html">Terms and Privacy Notice</a>
+            <a href="feedback.html">Send us feedback</a>
+            <a href="help.html">Help</a>
+            <a href="#">© 1996-2023, Amazon.com, Inc. or its affiliates</a>
+        </div>
+        <div class="copyright">
+            Prime Video is a paid service and requires an Amazon Prime membership. By signing up, you agree to our Terms of Use and Privacy Policy.
+        </div>
+    </footer>
+
+    <script>
+        // Movie data
+        const popularMovies = [
+            {
+                title: "The Tomorrow War",
+                image: "https://m.media-amazon.com/images/M/MV5BNTI2YTI0MWEtNGQ4OS00ODIzLWE1MWEtZGJiN2E3ZmM1OWI1XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg",
+                year: "2021",
+                isPrime: true
+            },
+            {
+                title: "No Time to Die",
+                image: "https://m.media-amazon.com/images/M/MV5BYWQ2NzQ1NjktMzNkNS00MGY1LTgwMmMtYTllYTI5YzNmMmE0XkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg",
+                year: "2021",
+                isPrime: false
+            },
+            {
+                title: "Dune",
+                image: "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg",
+                year: "2021",
+                isPrime: true
+            },
+            {
+                title: "The Suicide Squad",
+                image: "https://m.media-amazon.com/images/M/MV5BNGM3YzdlOWYtNjViZS00MTE2LWE1MWUtZmE2ZTcxZjcyMmU3XkEyXkFqcGdeQXVyODEyMTI1MjA@._V1_.jpg",
+                year: "2021",
+                isPrime: true
+            },
+            {
+                title: "Black Widow",
+                image: "https://m.media-amazon.com/images/M/MV5BNjRmNDI5MjMtMmFhZi00YzcwLWI4ZGItMGI2MjI0N2Q3YmIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                year: "2021",
+                isPrime: false
+            },
+            {
+                title: "Shang-Chi",
+                image: "https://m.media-amazon.com/images/M/MV5BNTliYjlkNDQtMjFlNS00NjgzLWFmMWEtYmM2Mzc2ZGY3ZGIzXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                year: "2021",
+                isPrime: false
+            },
+            {
+                title: "Free Guy",
+                image: "https://m.media-amazon.com/images/M/MV5BOTY2NzFjODctOWUzMC00MGZhLTlhNjMtM2Y2ODBiNGY1ZWRiXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+                year: "2021",
+                isPrime: true
+            },
+            {
+                title: "Jungle Cruise",
+                image: "https://m.media-amazon.com/images/M/MV5BNDE1MGRlNTQtZjc4ZC00MTI0LWEwY2MtODk1YTM2NmFmYTNmXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg",
+                year: "2021",
+                isPrime: true
+            }
+        ];
+
+        const primeOriginals = [
+            {
+                title: "The Boys",
+                image: "https://m.media-amazon.com/images/M/MV5BOTEyNDJhMDAtY2U5ZS00OTMzLTkwODktMjU3MjFkZWVlMGYyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+                year: "2019-2023",
+                isPrime: true
+            },
+            {
+                title: "The Marvelous Mrs. Maisel",
+                image: "https://m.media-amazon.com/images/M/MV5BMGFmZDRkNWItMGY5YS00YzY1LWIzOTItZGNiY2Y3NjM4YzVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg",
+                year: "2017-2023",
+                isPrime: true
+            },
+            {
+                title: "Jack Ryan",
+                image: "https://m.media-amazon.com/images/M/MV5BNDExMzIzNjk3Nl5BMl5BanBnXkFtZTgwOTE4MTU0NzM@._V1_.jpg",
+                year: "2018-2023",
+                isPrime: true
+            },
+            {
+                title: "The Wheel of Time",
+                image: "https://m.media-amazon.com/images/M/MV5BYzA2Nzk5M2EtNWY4Yi00ZDY4LTkxNTUtMmIxZTJiMjdkM2VhXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                year: "2021-2023",
+                isPrime: true
+            },
+            {
+                title: "Invincible",
+                image: "https://m.media-amazon.com/images/M/MV5BMmE1ODVhMGYtODYyYS00Mjc4LWIzN2EtYWZkZDg1MTUyNDkxXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                year: "2021-2023",
+                isPrime: true
+            },
+            {
+                title: "Upload",
+                image: "https://m.media-amazon.com/images/M/MV5BZTMxMGM5MjItNDJhNi00ZWQ2LTg4MmItODc5NjVjOWI3Nzk3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                year: "2020-2023",
+                isPrime: true
+            },
+            {
+                title: "The Expanse",
+                image: "https://m.media-amazon.com/images/M/MV5BZDVmMDljM2QtZDkzZC00ZDg2LWFiMGItZjNiNjliZjg2MGEzXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+                year: "2015-2022",
+                isPrime: true
+            },
+            {
+                title: "Good Omens",
+                image: "https://m.media-amazon.com/images/M/MV5BZGVmMDQ4MjYtYzYwZi00Nzg4LThlNDAtYjAyYjVhMTI0ODRmXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg",
+                year: "2019-2023",
+                isPrime: true
+            }
+        ];
+
+        // Function to create movie cards
+        function createMovieCard(movie) {
+            return `
+                <div class="movie-card">
+                    ${movie.isPrime ? '<span class="prime-label">PRIME</span>' : ''}
+                    <img src="${movie.image}" alt="${movie.title}">
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.year}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to load movies
+        function loadMovies() {
+            const moviesContainer = document.getElementById('moviesContainer');
+            const originalsContainer = document.getElementById('originalsContainer');
+
+            // Load popular movies
+            popularMovies.forEach(movie => {
+                moviesContainer.innerHTML += createMovieCard(movie);
+            });
+
+            // Load prime originals
+            primeOriginals.forEach(movie => {
+                originalsContainer.innerHTML += createMovieCard(movie);
+            });
+
+            // Add search functionality
+            const searchInput = document.querySelector('.search-container input');
+            const searchButton = document.querySelector('.search-container button');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const allMovies = [...popularMovies, ...primeOriginals];
+                const filteredMovies = allMovies.filter(movie => 
+                    movie.title.toLowerCase().includes(searchTerm)
+                );
+
+                // Clear containers
+                moviesContainer.innerHTML = '';
+                originalsContainer.innerHTML = '';
+
+                if (filteredMovies.length === 0) {
+                    moviesContainer.innerHTML = '<p>No movies found matching your search.</p>';
+                    return;
+                }
+
+                // Display search results in both containers
+                filteredMovies.forEach(movie => {
+                    moviesContainer.innerHTML += createMovieCard(movie);
+                });
+
+                // Hide the originals section when searching
+                document.querySelectorAll('.section-title')[1].style.display = 'none';
+                originalsContainer.style.display = 'none';
+            }
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+
+        // Load movies when the page loads
+        window.onload = loadMovies;
+    </script>
+</body>
+</html>
