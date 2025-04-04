@@ -1,0 +1,269 @@
+@import url("https://fonts.cdnfonts.com/css/amazon-ember");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Amazon Ember", sans-serif;
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* Navigation */
+nav {
+    background-color: #1a242f;
+    padding: 0px 25px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+}
+
+.logo img {
+    width: 150px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.right-menu {
+    padding: 25px;
+    font-size: 22px;
+}
+
+.right-menu a {
+    padding: 5px 15px;
+    color: rgba(10, 14, 17, 0.9);
+}
+
+.right-menu label:hover {
+    cursor: pointer;
+}
+
+.right-menu a:nth-child(2),
+.right-menu > a > label {
+    font-size: 18px;
+    padding: 0px 3px;
+}
+
+.arrow-down {
+    font-size: 12px;
+}
+
+.right-menu > img {
+    margin-top: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.right-menu > span {
+    color: rgba(242, 244, 246, 0.9);
+    font-size: 16px;
+    padding: 10px;
+}
+
+.right-menu > span > i {
+    margin-left: 5px;
+}
+
+/* Main Section */
+header {
+    position: relative;
+    min-width: 320px;
+    height: 100%;
+    overflow: hidden;
+    color: #fff;
+}
+
+header img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.textOverImage {
+    background: rgba(0, 0, 0, 0);
+    box-shadow: inset 545px 0px 60px 0px #000;
+    width: 45%;
+    height: 50%;
+    position: absolute;
+    top: 48%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+}
+
+.textOverImage h1 {
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 50px;
+    margin-top: 100px;
+}
+
+.textOverImage p {
+    font-size: 15px;
+    line-height: 19px;
+    margin-top: 12px;
+    width: 280px;
+    text-align: center;
+}
+
+.textOverImage p:nth-child(2) {
+    font-size: 24px;
+    line-height: 29px;
+    width: 596px;
+    text-align: left;
+}
+
+.textOverImage button {
+    width: 280px;
+    background-color: #0f79af;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 14px 22px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Sections */
+.section {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 40px;
+}
+
+.favChannels {
+    width: 45%;
+    margin: 30px 20px;
+}
+
+.favChannels h1 {
+    font-size: 45px;
+    font-weight: 300;
+    line-height: 50px;
+}
+
+.favChannels p {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 30px;
+    margin-top: 25px;
+    color: #353333;
+}
+
+.channelBtn {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.channelBtn img {
+    width: 194px;
+    height: 134px;
+    margin: 5px;
+}
+
+.channelBtn img:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 8px #000, -3px -3px 8px #000;
+}
+
+/* Membership Section */
+.membershipHeader {
+    position: relative;
+    min-width: 320px;
+    height: 680px;
+    overflow: hidden;
+    color: #fff;
+}
+
+#membershipDiv {
+    background: rgb(0, 0, 0);
+    width: 45%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.membershipHead {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.membershipPara {
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 28px;
+    width: 760px;
+    margin-bottom: 30px;
+}
+
+/* Fire TV Section */
+.fireTvHeader {
+    position: relative;
+    min-width: 320px;
+    height: 680px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.fireTvHeader img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.fireTvOverImage {
+    background: rgba(0, 0, 0, 0);
+    width: 45%;
+    height: 100%;
+    position: absolute;
+    top: 60%;
+    left: 75%;
+    transform: translate(-50%, -40%);
+}
+
+.fireTvHead {
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 50px;
+}
+
+.fireTvPara {
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 28px;
+    width: 800px;
+    margin: 30px 0;
+}
+
+.fireTvOverImage button {
+    width: 280px;
+    background-color: #0f79af;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 14px 22px;
+    margin-top: 15px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background-color: #191919;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
